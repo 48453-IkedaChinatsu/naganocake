@@ -1,0 +1,2 @@
+sclass ItemsController < ApplicationController
+end
