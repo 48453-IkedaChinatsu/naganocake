@@ -1,2 +1,0 @@
-sclass ItemsController < ApplicationController
-end
