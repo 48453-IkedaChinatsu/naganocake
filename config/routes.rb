@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  root to: 'homes#top'
   
   # 管理者用
 # URL /admin/sign_in ...
@@ -16,6 +15,8 @@ Rails.application.routes.draw do
   # 会員側のルーティング設定
   scope module: :public do
   get 'items' => 'items#index'
+  root to: 'homes#top'
+  resources :items, only: [:show, :index]
   end
   # 管理者側のルーティング設定
   # namespace :admin do
