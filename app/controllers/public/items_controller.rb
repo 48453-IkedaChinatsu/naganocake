@@ -1,5 +1,4 @@
 class Public::ItemsController < ApplicationController
-    def index
-        
-    end
+ def indexx
+ end
 end
