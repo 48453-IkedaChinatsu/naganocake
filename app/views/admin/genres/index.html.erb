@@ -6,7 +6,7 @@
       <h2>ジャンル追加・一覧画面</h2><br>
 
     <div class="form-group col-md-10">
-      <%= form_for(@genre, url: admin_genres_path) do |f| %>  
+      <%= form_with model:@genre, url: admin_genres_path do |f| %>  
           <%= f.label :ジャンル名,class: "col-md-4" %>
           <%= f.text_field :name,class: "col-md-4" %>
           <%= f.submit "新規登録" ,class: "btn btn-primary" %>
@@ -14,7 +14,6 @@
     </div>
 
     <br>
-      <!-- ofsetは左右の余白 -->
       <table class="table genre-index">
         <thead>
           <tr>

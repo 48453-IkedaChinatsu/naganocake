@@ -1,14 +1,13 @@
 <div class="container">
       <h2>商品新規登録</h2>
       
- <%= form_for(@item, url: admin_items_path) do |f| %>
+ <%= form_with model:@item, url: admin_items_path,method: :post do |f| %>
  
       <table class="new-form-table">
         <tbody>
             <tr>
               <th>商品画像
-              <%= f.submit 'ファイルを選択',class: "col-xs-12 btn btn-primary btn btn-light" %>
-              選択されていません。</th>
+              <%= f.file_field :image, accept: "image/*" %></th>
             </tr>
              
             <tr>
@@ -44,8 +43,8 @@
         </table>
     
       
-     <div class="text-right">
-      <%= link_to "新規登録" ,new_admin_item_path, class:"btn btn-lg btn-primary" %>
+     <div class="text-center">
+      <%= f.submit class:"btn btn-lg btn-primary" %>
      </div>
       <% end %>
       
