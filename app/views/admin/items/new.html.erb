@@ -1,0 +1,52 @@
+<div class="container">
+      <h2>商品新規登録</h2>
+      
+ <%= form_for(@item, url: admin_items_path) do |f| %>
+ 
+      <table class="new-form-table">
+        <tbody>
+            <tr>
+              <th>商品画像
+              <%= f.submit 'ファイルを選択',class: "col-xs-12 btn btn-primary btn btn-light" %>
+              選択されていません。</th>
+            </tr>
+             
+            <tr>
+              <th>商品名</th> 
+              <td>
+                  <%= f.text_field :name,placeholder: "商品名",class:"col-xs-12 form-control" %></td>    
+            </tr>
+            
+             <tr>
+              <th>商品説明</th>
+              <td><%= f.text_area :introduction,placeholder: "ここに説明文を記述します。",class:"col-xs-12 form-control" %></td>    
+            </tr>
+            
+            <tr>
+              <th>ジャンル</th>
+              <td><%= f.collection_select :genre_id, Genre.all ,:id, :name, include_blank: "--選択してください--" %></td>
+            </tr>
+
+            <tr>
+              <th>税抜価格</th>
+              <td><%= f.text_field :price, placeholder: "1000",class: "form-control" %></td>
+              <th>円</th>
+            </tr>
+
+            <tr>
+              <th>販売ステータス</th>
+               <td><%= f.radio_button :is_active, :true %>
+               <%= f.label :is_active, "販売中", {value: :true, style: "display: inline-block;"} %>
+               <%= f.radio_button :is_active, :false %>
+               <%= f.label :is_active, "販売停止中", {value: :false, style: "display: inline-block;"} %></td>
+            </tr>
+            </tbody>
+        </table>
+    
+      
+     <div class="text-right">
+      <%= link_to "新規登録" ,new_admin_item_path, class:"btn btn-lg btn-primary" %>
+     </div>
+      <% end %>
+      
+</div>
