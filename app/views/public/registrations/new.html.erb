@@ -73,7 +73,7 @@
      <h5>既に登録済みの方</h5>
     　<div class="col-sm-3">
       　<%- if controller_name != 'sessions' %>
-        <%= link_to "こちら" %>
+        <%= link_to "こちら",new_customer_session_path(resource_name)%>
       　からログインしてください
     　</div>
     　<% end %>

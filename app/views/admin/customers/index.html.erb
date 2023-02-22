@@ -18,7 +18,7 @@
           <% @customers.each do |customer| %>
             <tr>
               <td><%= customer.id %></td>
-              <td></td>
+              <td><%= customer.last_name %><%= customer.first_name %></td>
               <td><%= customer.email %></td>
               <td>
                 <% if customer.is_customer_status == true %>
