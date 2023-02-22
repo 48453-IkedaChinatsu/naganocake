@@ -18,9 +18,11 @@ Rails.application.routes.draw do
   }
   # 会員側のルーティング設定
   scope module: :public do
-
+   get 'customers/my_page' => 'customers#show'
+   get '/customers/my_page/edit' => 'customers#edit'
   resources :items, only: [:show, :index]
   resources :genres, only: [:index]
+
   end
   # 管理者側のルーティング設定
    namespace :admin do
