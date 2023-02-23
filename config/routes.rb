@@ -26,6 +26,7 @@ Rails.application.routes.draw do
   end
   # 管理者側のルーティング設定
    namespace :admin do
+    root to: 'homes#top'
    resources :items
    resources :genres
    resources :customers
