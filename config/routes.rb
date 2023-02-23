@@ -1,5 +1,10 @@
 Rails.application.routes.draw do
   
+  namespace :public do
+    get 'orders/new'
+    get 'orders/index'
+    get 'orders/show'
+  end
   # 管理者用
 # URL /admin/sign_in ...
  root to: 'public/homes#top'
