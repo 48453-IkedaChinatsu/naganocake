@@ -7,8 +7,9 @@ Rails.application.routes.draw do
   end
   # 管理者用
 # URL /admin/sign_in ...
- root to: 'public/homes#top'
- devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
+  root to: 'public/homes#top'
+  get 'about' => 'public/homes#about'
+  devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
   sessions: 'admin/sessions',
   passwords: 'admins/passwords',
   registrations: 'admins/registrations'

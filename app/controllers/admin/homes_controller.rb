@@ -5,4 +5,8 @@ class Admin::HomesController < ApplicationController
     @orders = Order.page(params[:page]).per(10)
   end
   
+  def about
+    
+  end
+    
 end
