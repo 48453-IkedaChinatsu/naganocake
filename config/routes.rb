@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'orders/new'
     get 'orders/index'
     get 'orders/show'
+    
   end
   # 管理者用
 # URL /admin/sign_in ...
@@ -26,8 +27,12 @@ Rails.application.routes.draw do
   scope module: :public do
    get 'customers/my_page' => 'customers#show'
    get '/customers/my_page/edit' => 'customers#edit'
+   get '/customers/unsubscribe' => 'customers#unsubscribe'
+   get 'addresses' => 'addresses#index'
+   get 'items' => 'items#index'
   resources :items, only: [:show, :index]
   resources :genres, only: [:index]
+  resources :addresses, only: [:index, :create, :destroy, :edit, :update]
 
   end
   # 管理者側のルーティング設定

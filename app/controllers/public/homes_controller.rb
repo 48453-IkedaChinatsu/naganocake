@@ -12,5 +12,9 @@ class Public::HomesController < ApplicationController
   def about
   
   end
+  
+  def unsubscribe
+    
+  end
 end
  
