@@ -29,7 +29,6 @@ Rails.application.routes.draw do
    get '/customers/my_page/edit' => 'customers#edit'
    get '/customers/unsubscribe' => 'customers#unsubscribe'
    get 'addresses' => 'addresses#index'
-   get 'items' => 'items#index'
   resources :items, only: [:show, :index]
   resources :genres, only: [:index]
   resources :addresses, only: [:index, :create, :destroy, :edit, :update]

@@ -15,6 +15,7 @@
         </h4>
 
     　<h4>新着商品</h4>
+    <div class="row">  
        <% @item.last(4).each do |item| %>
        <div class='col-xs-3'>
             <%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
@@ -24,7 +25,7 @@
             <% end %>
        </div>
        <% end %>
-
+    </div>
 　</div>
 </div>
 </div>
