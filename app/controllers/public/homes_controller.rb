@@ -3,6 +3,7 @@ class Public::HomesController < ApplicationController
   def top
     @item = Item.new
     @item = Item.all
+    @genres = Genre.all
   end
   
   def image
