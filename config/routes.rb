@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
   
   namespace :public do
-    get 'orders/new'
+    get 'orders/new' => 'orders#new'
     get 'orders/index'
     get 'orders/show'
     
