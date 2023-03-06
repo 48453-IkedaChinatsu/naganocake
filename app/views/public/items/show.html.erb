@@ -1,9 +1,9 @@
+<div class="container">
 <div class="row">
 	<div class="col-xs-2">
  <%= render "public/items/sidebar", genres: @genres %>
 	</div>
-
- <div class="row">
+	
   <div class="col-xs-4">
       <h4>商品詳細</h4><br>
        <% if @item.image.attached? %>
@@ -11,9 +11,10 @@
        <% else %>
        <%= image_tag 'no_image', size: "300x300" %>
        <% end %>
-    
+　</div>
+　
       <br><br><br><br>
-      <div class="col-xs-8">
+      <div class="col-xs-６">
         <table class="table">
           <tbody>
             <tr>
@@ -24,29 +25,19 @@
               <td>商品説明</td>
               <td><%= @item.introduction %></td>
             </tr>
-            <tr>
-              <td>ジャンル</td>
-              <td><%= @item.name %></td>
-            </tr>
-            <tr>
-              <td>税込価格</td>
-              <td><%= @item.price %>円</td>
-            </tr>
           </tbody>
         </table>
-
-      <div class="row">
-       <div class="col-xs-2"></div>
-       <div class="col-xs-5">
-       <p class="item-content2", style="font-family: arial black">¥ <%= ((@item.price_tax*1.1).floor).to_s(:delimited, delimiter: ',') %> (税込)
-       <span>　　</span><%= form.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %></p>
+       <p class="item-content2", style="font-family: arial black">¥ <%= ((@item.price_was*1.1).floor).to_s(:delimited, delimiter: ',') %> (税込)
+    　　　<%= form_with model: @cart_item, url:cart_items_path(item_id: @item), method: :post do |f| %>
+		　<h3><%= @item.name %></h3>
+		　　<%= f.hidden_field :item_id, value: @item.id %>
+       　　<%= f.select :quantity, [['1個', 1], ['2個', 2], ['3個', 3], ['4個', 4], ['5個', 5], ['6個', 6], ['7個', 7], ['8個', 8], ['9個', 9]], {:prompt => "個数選択"} %>
+       　　<%= f.submit "カートに入れる", class:"btn btn-primary" %>
+       　　<% end %>
+     　</p>
        </div>
-
-      <div class="col-xs-5">
-       <p><%= form.submit "カートに入れる", class:"btn btn-primary" %></p>
-      </div>
-       <% end %>
-       </div>
-     </div>
-  </div>
+       
+      
+  
+ </div>
  </div>

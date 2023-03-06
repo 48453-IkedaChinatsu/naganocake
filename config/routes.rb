@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     get 'orders/new' => 'orders#new'
     get 'orders/index'
     get 'orders/show'
+    get 'orders/thanks'
     
   end
   # 管理者用
@@ -32,6 +33,8 @@ Rails.application.routes.draw do
   resources :items, only: [:show, :index]
   resources :genres, only: [:index]
   resources :addresses, only: [:index, :create, :destroy, :edit, :update]
+  resources :cart_items, only: [:index, :create, :update, :destroy]
+   delete 'cart_items' => 'cart_items#all_destroy', as: 'all_destroy'
 
   end
   # 管理者側のルーティング設定
