@@ -15,7 +15,7 @@
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td class="text-left">
-                <%= image_tag( cart_item.item, :image, size: "60x50", fallback: "no_image.jpg") %>
+                <%= image_tag @cart_item.image, size: "60x50" %>
                 <%= cart_item.item.name %>
               </td>
               <td class="text-right">
@@ -33,49 +33,8 @@
         </tbody>
       </table>
     </div>
-    <div class="col-xs-3 billing">
-      <table class="table table-hover table-condensed table-bordered">
-          <tr>
-            <th class="info">送料</th>
-            <td class="text-right col-xs-5">
-              <!-- sessiomのデータを表示する場合、カラム名に""つける -->
-              ¥<%= session[:order]["postage"].to_s(:delimited, delimiter: ',') %>
-            </td>
-          </tr>
-          <tr>
-            <th class="info">商品合計</th>
-            <td class="text-right">
-              ¥<%= (session[:order]["total_payment"] - session[:order]["postage"]).to_s(:delimited, delimiter: ',') %>
-            </td>
-          </tr>
-          <tr>
-            <th class="info">請求金額</th>
-            <td class="text-right">
-              ¥<%= session[:order]["total_payment"].to_s(:delimited, delimiter: ',') %>
-            </td>
-          </tr>
-      </table>
-    </div>
-    <div class="col-xs-9 billing">
-      <table class="table table-hover table-condensed table-bordered">
-        <tr>
-          <th  class="info">支払方法</th>
-          <td class="text-left">
-            <%= session[:order]["payment_method"] %>
-          </td>
-        </tr>
-        <tr>
-          <th  class="info">お届け先</th>
-          <td class="text-left">
-            <%= session[:order]["post_code"] %><br>
-            <%= session[:order]["address"] %><br>
-            <%= session[:order]["name"]  %>
-          </td>
-        </tr>
-      </table>
-
-      <%= link_to "購入を確定する",  public_orders_thanks, class: 'btn btn-primary col-xs-12' %>
-
-    </div>
+    
+    
+    
 </div>
 </div>
