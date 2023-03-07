@@ -1,20 +1,19 @@
 Rails.application.routes.draw do
   
-  namespace :public do
-    get 'orders/new' => 'orders#new'
-    get 'orders/index'
-    get 'orders/show'
-    get 'orders/thanks'
+  # namespace :public do
+  #   get 'orders/new' => 'orders#new'
+  #   get 'orders/index'
+  #   get 'orders/show'
+  #   get 'orders/thanks'
     
-  end
+  # end
+  
   # 管理者用
 # URL /admin/sign_in ...
   root to: 'public/homes#top'
   get 'about' => 'public/homes#about'
   devise_for :admin, skip: [:registrations, :passwords] ,controllers: {
-  sessions: 'admin/sessions',
-  passwords: 'admins/passwords',
-  registrations: 'admins/registrations'
+  sessions: 'admin/sessions'
   }
 
 # 顧客用
@@ -30,8 +29,10 @@ Rails.application.routes.draw do
    get '/customers/my_page/edit' => 'customers#edit'
    get '/customers/unsubscribe' => 'customers#unsubscribe'
    get 'addresses' => 'addresses#index'
+   post '/orders/confirm' => 'orders#confirm'
   resources :items, only: [:show, :index]
   resources :genres, only: [:index]
+  resources :orders, only: [:create, :new, :index, :show]
   resources :addresses, only: [:index, :create, :destroy, :edit, :update]
   resources :cart_items, only: [:index, :create, :update, :destroy]
    delete 'cart_items' => 'cart_items#all_destroy', as: 'all_destroy'

@@ -14,8 +14,43 @@ class Public::OrdersController < ApplicationController
       
       
   def index
+      
   end
 
+
+  def confirm
+      @cart_items = current_customer.cart_items
+  end
+
+
+  def complete
+		order = Order.new(session[:order])
+		order.save
+
+		if session[:new_address]
+			address = current_customer.addresses.new
+			address.postal_code = order.post_code
+			address.address = order.address
+			address.name = order.name
+			address.save
+			session[:new_address] = nil
+		end
+
+		# 以下、order_detail作成
+		    cart_items = current_customer.cart_items
+		    cart_items.each do |cart_item|
+			order_detail = OrderDetail.new
+			order_detail.order_id = order.id
+			order_detail.item_id = cart_item.item.id
+			order_detail.quantity = cart_item.quantity
+			order_detail.making_status = 0
+			order_detail.price = (cart_item.item.price * 1.1).floor
+			order_detail.save
+		end
+
+		# 購入後はカート内商品削除
+		cart_items.destroy_all
+  end
 
 
 
