@@ -15,10 +15,10 @@
           <% @cart_items.each do |cart_item| %>
             <tr>
               <td class="text-left">
-                <%= image_tag @cart_item.image, size: "60x50" %>
+                <%= image_tag cart_item.item.image, size: "60x50" %>
                 <%= cart_item.item.name %>
               </td>
-              <td class="text-right">
+               <td class="text-right">
                 ¥<%= ((cart_item.item.price * 1.1).floor).to_s(:delimited, delimiter: ',') %>
                 
               </td>
@@ -34,6 +34,29 @@
       </table>
     </div>
     
+      <div class="col-xs-3 billing">
+      <table class="table table-hover table-condensed table-bordered">
+          <tr>
+            <th class="info">送料</th>
+            <td class="text-right col-xs-5">
+              <!-- sessiomのデータを表示する場合、カラム名に""つける -->
+              ¥<%= session[:order]["shipping_cost"].to_s(:delimited, delimiter: ',') %>
+            </td>
+          </tr>
+          <tr>
+            <th class="info">商品合計</th>
+            <td class="text-right">
+              ¥<%= (session[:order]["total_payment"] - session[:order]["postage"]).to_s(:delimited, delimiter: ',') %>
+            </td>
+          </tr>
+          <tr>
+            <th class="info">請求金額</th>
+            <td class="text-right">
+              ¥<%= session[:order]["total_payment"].to_s(:delimited, delimiter: ',') %>
+            </td>
+          </tr>
+      </table>
+    </div>
     
     
 </div>

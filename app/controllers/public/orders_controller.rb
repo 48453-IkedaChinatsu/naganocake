@@ -19,7 +19,9 @@ class Public::OrdersController < ApplicationController
 
 
   def confirm
+    #  @cart_item = CartItem.find(params[:id])
       @cart_items = current_customer.cart_items
+     
   end
 
 
@@ -56,11 +58,11 @@ class Public::OrdersController < ApplicationController
 
   def show
       @order = Order.find(params[:id])
-		  @order_details = @order.order_details
+      @order_details = @order.order_details
    if @order.save
-	    cart_items.each do |cart|
-	    order_item = OrderItem.new
-	    order_item.item_id = cart.item_id
+	  art_items.each do |cart|
+	  order_item = OrderItem.new
+	  order_item.item_id = cart.item_id
       order_item.order_id = @order.id
       order_item.order_quantity = cart.quantity
       order_item.save
