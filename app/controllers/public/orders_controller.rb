@@ -3,6 +3,7 @@ class Public::OrdersController < ApplicationController
   def new
       @order = Order.new
       @addresses = current_customer.addresses
+      # binding.pry
   end
   
   
@@ -19,9 +20,26 @@ class Public::OrdersController < ApplicationController
 
 
   def confirm
-    #  @cart_item = CartItem.find(params[:id])
-      @cart_items = current_customer.cart_items
-     
+       @order = Order.new(order_params)
+       @order.shipping_cost = 800
+       @sum = 0
+       @cart_items = current_customer.cart_items.all 
+       @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+       
+    if params[:order][:address_number] == "1"
+       @order.delivery_target_name = current_customer.last_name + current_customer.first_name
+       @order.address = current_customer.address
+       @order.post_code = current_customer.postal_code
+       
+    elsif params[:order][:address_number] == "2"
+       @address = Address.find(params[:order][:address_for_order])
+       @order.delivery_target_name = @address.name
+       @order.address =  @address.address
+       @order.post_code =  @address.postal_code
+   
+    elsif params[:order][:address_number] == "3"
+      
+    end
   end
 
 
@@ -39,8 +57,8 @@ class Public::OrdersController < ApplicationController
 		end
 
 		# 以下、order_detail作成
-		    cart_items = current_customer.cart_items
-		    cart_items.each do |cart_item|
+		  cart_items = current_customer.cart_items
+		  cart_items.each do |cart_item|
 			order_detail = OrderDetail.new
 			order_detail.order_id = order.id
 			order_detail.item_id = cart_item.item.id
@@ -60,9 +78,9 @@ class Public::OrdersController < ApplicationController
       @order = Order.find(params[:id])
       @order_details = @order.order_details
    if @order.save
-	  art_items.each do |cart|
-	  order_item = OrderItem.new
-	  order_item.item_id = cart.item_id
+	    art_items.each do |cart|
+	    order_item = OrderItem.new
+	    order_item.item_id = cart.item_id
       order_item.order_id = @order.id
       order_item.order_quantity = cart.quantity
       order_item.save
@@ -80,29 +98,23 @@ class Public::OrdersController < ApplicationController
   
   def check
        @order = Order.new(order_params)
-    if params[:order][:address_number] == "1"
-       @order.name = current_customer.name 
-       @order.address = current_customer.customer_address
-    elsif 
-       params[:order][:address_number] == "2"
-    if Address.exists?(name: params[:order][:registered])
-       @order.name = Address.find(params[:order][:registered]).name
-       @order.address = Address.find(params[:order][:registered]).address
-    else
-       render :new
-    end
-    elsif 
-       params[:order][:address_number] == "3"
-       address_new = current_customer.addresses.new(address_params)
-    if address_new.save 
-    else
-       render :new
-    end
-    else
-       redirect_to 遷移したいページ 
-    end
        @cart_items = current_customer.cart_items.all 
        @total = @cart_items.inject(0) { |sum, item| sum + item.sum_price }
+       
+    if params[:order][:address_number] == "1"
+       @order.delivery_target_name = current_customer.last_name + current_customer.first_name
+       @order.address = current_customer.customer_address
+       @order.post_code = current_customer.postal_code
+       
+    elsif params[:order][:address_number] == "2"
+       @address = Address.find(params[:order][:address_for_order])
+       @order.delivery_target_name = @address.name
+       @order.address =  @address.address
+       @order.post_code =  @address.postal_code
+   
+    elsif params[:order][:address_number] == "3"
+      
+    end
   end
   
   
@@ -124,11 +136,11 @@ class Public::OrdersController < ApplicationController
 private
 
   def order_params
-      params.require(:order).permit(:name, :address, :total_price)
+      params.require(:order).permit(:delivery_target_name, :address, :total_price, :post_code, :payment_method)
   end
 
-  def address_params
-      params.require(:order).permit(:name, :address)
-  end
+# def address_params
+#       params.require(:order).permit(:delivery_target_name, :address, :postal_code)
+# end
   
 end

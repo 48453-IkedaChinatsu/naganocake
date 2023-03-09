@@ -3,7 +3,7 @@
     <div class="col-xs-12">
       <h3><strong>配送先登録/一覧</strong></h3>
         <%= form_with(model: @address, url: addresses_path) do |f| %>
-            <div class="address">
+            <!--<div class="address">-->
                 <div class="form-group col-xs-12">
                     <%= f.label :"郵便番号(ハイフンなし)" ,class: "col-xs-3 control-label" %>
                     <%= f.text_field :postal_code, class: "col-xs-4 form-control-static postal_code" %>
@@ -19,7 +19,7 @@
                     <%= f.text_field :name, class: "col-xs-4 form-control-static name" %>
                 </div>
                 <%= f.submit '新規登録' ,class: "col-xs-2 pull-right btn-lg btn-success " %>
-            </div>
+            <!--</div>-->
         <% end %>
     </div>
  </div>

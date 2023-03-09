@@ -3,7 +3,7 @@ class Public::AddressesController < ApplicationController
      # 配送先一覧/配送先登録画面
     def index
      @address = Address.new
-     @addresses = Address.all
+     @addresses = current_customer.addresses
      #@addresses = current_addresses
     end
     
@@ -12,7 +12,8 @@ class Public::AddressesController < ApplicationController
         @address = Address.new(address_params)
         @addresses = Address.all
         @address.customer_id = current_customer.id
-        if @address.save
+        # binding.pry
+        if @address.save!
             redirect_to addresses_path(@addresses),notice:'Address is create'
         else
             flash[:success] = "登録しました。"
