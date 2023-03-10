@@ -16,6 +16,7 @@ Rails.application.routes.draw do
   sessions: 'admin/sessions'
   }
 
+
 # 顧客用
 # URL /customers/sign_in ...
  devise_for :customers,skip: [:passwords], controllers: {
@@ -23,6 +24,21 @@ Rails.application.routes.draw do
   sessions: 'public/sessions',
    passwords: 'customers/passwords'
   }
+  
+  
+    # customer側ルーティング
+  # devise_for :customers, controllers: {
+  #  sessions:      'customers/sessions',
+  #  passwords:     'customers/passwords',
+  #  registrations: 'customers/registrations'
+  # }
+
+  scope module: 'customers' do
+    resources :items, only: [:show, :index]
+    get 'about' => 'items#about'
+   end
+  
+  
   # 会員側のルーティング設定
   scope module: :public do
    get 'customers/my_page' => 'customers#show'
