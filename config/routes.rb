@@ -33,12 +33,6 @@ Rails.application.routes.draw do
   #  registrations: 'customers/registrations'
   # }
 
-  scope module: 'customers' do
-    resources :items, only: [:show, :index]
-    get 'about' => 'items#about'
-   end
-  
-  
   # 会員側のルーティング設定
   scope module: :public do
    get 'customers/my_page' => 'customers#show'
@@ -46,6 +40,8 @@ Rails.application.routes.draw do
    get '/customers/unsubscribe' => 'customers#unsubscribe'
    get 'addresses' => 'addresses#index'
    post '/orders/confirm' => 'orders#confirm'
+   get 'about' => 'items#about'
+   get '/orders/thanks' => 'orders#thanks'
   resources :items, only: [:show, :index]
   resources :genres, only: [:index]
   resources :orders, only: [:create, :new, :index, :show]
