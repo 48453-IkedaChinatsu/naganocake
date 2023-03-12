@@ -35,13 +35,14 @@ Rails.application.routes.draw do
 
   # 会員側のルーティング設定
   scope module: :public do
-   get 'customers/my_page' => 'customers#show'
+   get '/customers/my_page' => 'customers#show'
    get '/customers/my_page/edit' => 'customers#edit'
    get '/customers/unsubscribe' => 'customers#unsubscribe'
-   get 'addresses' => 'addresses#index'
+   #get '/addresses' => 'addresses#index',as:'test'
    post '/orders/confirm' => 'orders#confirm'
-   get 'about' => 'items#about'
+   #get '/about' => 'items#about'
    get '/orders/thanks' => 'orders#thanks'
+   patch 'customers/withdraw' => 'customers#withdraw', as: 'customers_withdraw'
   resources :items, only: [:show, :index]
   resources :genres, only: [:index]
   resources :orders, only: [:create, :new, :index, :show]

@@ -28,14 +28,14 @@
       <div class="row">
         <label class="col-lg-3">メールアドレス</label>
         <div class="col-lg-3">
-          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"(メールアドレス )"%>
+          <%= f.email_field :email, autofocus: true, autocomplete: "email", placeholder:"メールアドレス "%>
         </div>
       </div><br>
       
       <div class="row">
         <label class="col-lg-3">郵便番号（ハイフンなし）</label>
         <div class="col-lg-3">
-          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code",  placeholder: "()" %>
+          <%= f.text_field :postal_code, autofocus: true, autocomplete: "postal_code",  placeholder: "郵便番号" %>
         </div>
       </div><br>
 
@@ -43,14 +43,14 @@
       <div class="row">
         <label class="col-lg-3">住所</label>
         <div class="col-lg-3">
-          <%= f.text_field :address, autofocus: true, autocomplete: "address", :size=>"60",  placeholder: "" %>
+          <%= f.text_field :address, autofocus: true, autocomplete: "address", :size=>"60",  placeholder: "住所" %>
         </div>
       </div><br>
       
       <div class="row">
         <label class="col-lg-3">電話番号（ハイフンなし）</label>
         <div class="col-lg-3">
-          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number",  placeholder: "" %>
+          <%= f.text_field :phone_number, autofocus: true, autocomplete: "phone_number",  placeholder: "電話番号" %>
         </div>
       </div><br>
       
@@ -60,7 +60,7 @@
           <em>(<%= @minimum_password_length %>文字以上)</em>
         <% end %></label>
         <div class="col-lg-3">
-          <%= f.password_field :password, autocomplete: "encrypted_password",  placeholder: "" %>
+          <%= f.password_field :password, autocomplete: "encrypted_password",  placeholder: "パスワード" %>
         </div>
       </div><br>
       
@@ -68,16 +68,17 @@
       <div class="col-lg-3"></div>
         <%= f.submit "新規登録",class:"btn btn-success col-lg-3" %>
       </div><br>
+      　<% end %>
       
-      
-     <h5>既に登録済みの方</h5>
-    　<div class="col-sm-3">
+  <div class="row">
+  <div class="col-xs-5">
+     <h5>既に登録済みの方</h5><br>
       　<%- if controller_name != 'sessions' %>
-        <%= link_to "こちら",new_customer_session_path(resource_name)%>
-      　からログインしてください
-    　</div>
-    　<% end %>
-    　　　<% end %>
-  　</div>
-  </div>
+        <%= link_to "こちら",new_customer_session_path %>
+      　<strong>からログインしてください</strong>
+    　　<% end %>
+  </div><br>
+　</div>
+    　　
+</div>
   
