@@ -65,7 +65,7 @@
         <tr>
           <th  class="info">支払方法</th>
           <td class="text-left">
-            <%= @order.payment_method_i18n  %>
+            <%= @order.payment_method_i18n %>
           </td>
         </tr>
         <tr>
@@ -77,7 +77,11 @@
           </td>
         </tr>
       </table>
-     <%= f.hidden_field :post_code, value: @order.post_code %>
+      <%= f.hidden_field :request_amount, value:shipping_cost + @sum %>
+      <%= f.hidden_field :shipping_cost, value:800 %>
+      <%= f.hidden_field :post_code, value: @order.post_code %>
+      <%= f.hidden_field :address, value: @order.address %>
+      <%= f.hidden_field :delivery_target_name, value: @order.delivery_target_name %>
       <%= f.submit "購入を確定する", class: 'btn btn-primary col-xs-12' %>
 <% end %>
     </div>

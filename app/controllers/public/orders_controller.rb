@@ -13,16 +13,20 @@ class Public::OrdersController < ApplicationController
       @order = current_customer.orders.new(order_params)
       @order.save!
       @cart_items.each do|cart_item|
-      order_item = OrderItem.new(order_id: @order.id)
-      
-      order_item.save
+      order_item = Order.new(order_id: @order.id)
+      session[:order] = OrderDetail.new
+      order_detail.item_id = cart_item.item.id
+      order_detail.quantity = cart_item.quantity
+      order_detail.save
   end
       redirect_to orders_thanks_path
+      cart_items.destroy_all
   end   
       
-      
+ 
   def index
       @orders = current_customer.orders
+      @order_detail = all
   end
 
 
@@ -143,7 +147,7 @@ class Public::OrdersController < ApplicationController
 private
 
   def order_params
-      params.require(:order).permit(:delivery_target_name, :address, :total_price, :post_code, :payment_method)
+      params.require(:order).permit(:delivery_target_name, :address, :total_price, :post_code, :payment_method, :shipping_cost, :request_amount)
   end
 
 # def address_params
