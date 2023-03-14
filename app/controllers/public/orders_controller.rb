@@ -13,20 +13,19 @@ class Public::OrdersController < ApplicationController
       @order = current_customer.orders.new(order_params)
       @order.save!
       @cart_items.each do|cart_item|
-      order_item = Order.new(order_id: @order.id)
-      session[:order] = OrderDetail.new
+      order_detail = OrderDetail.new(order_id: @order.id)
       order_detail.item_id = cart_item.item.id
       order_detail.quantity = cart_item.quantity
-      order_detail.save
+      order_detail.price = (cart_item.item.price * 1.1).floor
+      order_detail.save!
   end
+      @cart_items.destroy_all
       redirect_to orders_thanks_path
-      cart_items.destroy_all
   end   
       
  
   def index
       @orders = current_customer.orders
-      @order_detail = all
   end
 
 
@@ -89,9 +88,9 @@ class Public::OrdersController < ApplicationController
       @order = Order.find(params[:id])
       @order_details = @order.order_details
    if @order.save
-	    art_items.each do |cart|
-	    order_item = OrderItem.new
-	    order_item.item_id = cart.item_id
+	  cart_items.each do |cart|
+	  order_item = OrderItem.new
+	  order_item.item_id = cart.item_id
       order_item.order_id = @order.id
       order_item.order_quantity = cart.quantity
       order_item.save
