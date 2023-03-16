@@ -2,7 +2,7 @@ class Public::CartItemsController < ApplicationController
     
     def index
         @cart_items = current_customer.cart_items
-        @total_price = @cart_items.sum{|cart_item|cart_item.item.price * cart_item.quantity * 1.1}
+        #@total_price = @cart_items.sum(@cart_items.with_tax_price * @cart_items.quantity * 1.1)
     end
 
     # カート商品を追加する
@@ -13,7 +13,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item.item_id = params[:cart_item][:item_id]
         # byebug
 
-        if @cart_item.save
+        if @cart_item.save!
            flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
            redirect_to cart_items_path
         else
@@ -29,7 +29,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item = CartItem.find(params[:id])
         #@cart.units += cart_params[:units].to_i
         @cart_item.update(cart_item_params)
-        redirect_to customers_cart_items_path
+        redirect_to cart_items_path
     end
 
     # カート商品を一つのみ削除
@@ -37,7 +37,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item = CartItem.find(params[:id])
         @cart_item.destroy
         flash.now[:alert] = "#{@cart_item.item.name}を削除しました"
-        redirect_to customers_cart_items_path
+        redirect_to cart_items_path
     end
 
     # カート商品を空ににする
@@ -45,7 +45,7 @@ class Public::CartItemsController < ApplicationController
         @cart_item = current_customer.cart_items
         @cart_item.destroy_all
         flash[:alert] = "カートの商品を全て削除しました"
-        redirect_to customers_cart_items_path
+        redirect_to cart_items_path
     end
 
     private

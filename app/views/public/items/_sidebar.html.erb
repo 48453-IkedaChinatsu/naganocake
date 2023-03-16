@@ -9,7 +9,7 @@
       <% genres.each do |genre| %>
         <tr>
           <td>
-            <%= link_to genre.name, admin_item_path(genre.id) %>
+            <%= link_to genre.name, items_path(genre_id: genre.id) %>
             </td>
         </tr>
       <% end %>

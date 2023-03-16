@@ -4,13 +4,13 @@
 <%= form_with(model: @customer, url: new_admin_session_path) do |f| %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス",  placeholder: "\uf0e0", class: 'fa' %>
+    <%= f.label :email %><br/>
+    <%= f.email_field :email, autofocus: true, autocomplete: "メールアドレス" %>
   </div>
 
   <div class="field">
-    <%= f.label :password %><br />
-    <%= f.password_field :password, autocomplete: "パスワード",  placeholder: "\uf023", class: 'fa' %>
+    <%= f.label :password %><br/>
+    <%= f.password_field :password, autocomplete: "パスワード" %>
   </div><br>
 
 

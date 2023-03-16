@@ -11,7 +11,8 @@
         会員でない方も商品の閲覧はできますが、<br>
         購入には会員登録が必要になります。<br>
         </h4>
-
+     
+     <div class="row">
     　<h4>新着商品</h4>
        <% @item.last(4).each do |item| %>
             <%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
@@ -21,5 +22,9 @@
             <% end %>
        <% end %>
      </div>
+     </div>
+    
+     
+    </div>
  </div>
 </div>

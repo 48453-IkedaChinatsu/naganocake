@@ -4,7 +4,11 @@ class Public::ItemsController < ApplicationController
  
  def index
     @item = Item.new
-    @items= Item.all
+    if params[:genre_id].present?
+       @items = Item.where(genre_id:params[:genre_id])
+   else
+       @items = Item.all
+   end
     #@search = Item.ransack(params[:q])
     #@items = @search.result.page(params[:page]).per(8)
  end
