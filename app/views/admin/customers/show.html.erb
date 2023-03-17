@@ -43,7 +43,7 @@
 
             <tr>
               <th>電話番号</th>
-              <td><%= @customer.telephone_number %></td>
+              <td><%= @customer.phone_number %></td>
             </tr>
 
             <tr>
@@ -54,7 +54,7 @@
 
         <div class="row">
           <%= link_to "編集する", customers_my_page_edit_path(@customer), class: "btn btn-success" %>
-          <%= link_to "注文一覧を見る",admin_orders_path, class: "btn btn-success" %>
+          <%#= link_to "注文一覧を見る",admin_order_path, class: "btn btn-success" %>
         </div>
   </div>
 </div>

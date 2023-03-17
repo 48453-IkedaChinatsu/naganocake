@@ -57,5 +57,6 @@ Rails.application.routes.draw do
    resources :items
    resources :genres
    resources :customers
+   resources :orders, only: [:show]
    end
 end
