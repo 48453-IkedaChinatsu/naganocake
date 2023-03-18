@@ -22,8 +22,8 @@
           <!-- 管理者がログインしている時 -->
           <li><%= link_to "商品一覧", admin_items_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
           <li><%= link_to "会員一覧", admins_customers_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-          <li><%= link_to "注文履歴一覧", admins_orders_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
-          <li><%= link_to "ジャンル一覧", admins_genres_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
+          <li><%= link_to "注文履歴一覧", admin_root_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
+          <li><%= link_to "ジャンル一覧", admin_genres_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
           <li><%= link_to "About", about_path, style: "font-family: HiraMinPro-W6; color: #000000;" %></li>
           <li><%= link_to "ログアウト", destroy_admin_session_path, method: :delete %></li>
 
