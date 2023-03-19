@@ -4,16 +4,16 @@
       <h2>ジャンル編集</h2><br>
 
         <div class="edit-genre-form">
-          <%= form_with model:@genre, url: admin_genres_path do |f| %>    
+          <%= form_with model: @genre, url: admin_genre_path(@genre.id), method: :patch do |f| %>    
           <%= f.label :ジャンル %>
           <%= f.text_field :name,class: "col-md-4" %>
-          <%= f.radio_button :name, :true %>
-          <%= f.label :name, "有効"  %>
-          <%= f.radio_button :name, :false %>
-          <%= f.label :name, "無効" %>
+          <%#= f.radio_button :name, :true %>
+          <%#= f.label :name, "有効"  %>
+          <%#= f.radio_button :name, :false %>
+          <%#= f.label :name, "無効" %>
           <%= f.submit "変更を保存する" ,class: "btn btn-primary" %>
-        </div>
           <% end %>
+        </div>
     </div>
   </div>
 </div>

@@ -14,10 +14,8 @@ class Public::CartItemsController < ApplicationController
         # byebug
 
         if @cart_item.save!
-           flash[:notice] = "#{@cart_item.item.name}をカートに追加しました。"
-           redirect_to cart_items_path
+           redirect_to  admin_order_path
         else
-            flash[:alert] = "個数を選択してください"
             @item = Item.find(params[:cart_item][:item_id])
             @genres = Genre.all
             render "public/items/show"

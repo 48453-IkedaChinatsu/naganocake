@@ -16,7 +16,7 @@
         <tbody>
           <% @orders.each do |order| %>
             <tr>
-              <td><%= order.updated_at.to_s(:datetime_jp) %></td>
+              <td><%= link_to order.updated_at.to_s(:datetime_jp), admin_order_path(order.id) %></td>
               <td><%= order.customer.last_name %><%= order.customer.first_name %></td>
 
              <td><%= order.order_details.sum(:quantity) %></td>

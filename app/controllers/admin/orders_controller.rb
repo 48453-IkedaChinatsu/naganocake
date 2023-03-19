@@ -2,19 +2,26 @@ class Admin::OrdersController < ApplicationController
     
     before_action :authenticate_admin!
 
-	def index
-		@search = Order.ransack(params[:q])
-        @orders = @search.result.page(params[:page]).per(10)
-	end
-
 	def show
 		@order = Order.find(params[:id])
 		@order_details = @order.order_details
+		@customer = @order.customer
+		@sum = 0
 	end
 
 	def total(items_total_price)
 
 	end
+
+    def create
+        @cart_item.item_id = params[:cart_item][:item_id]
+
+        if @order.save!
+           redirect_to  admin_order_path
+        else
+            render "admin/orders/show"
+        end
+    end
 
 	def update
 		order = Order.find(params[:id])

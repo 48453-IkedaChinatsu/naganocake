@@ -26,11 +26,11 @@
             <tr>
               <td><%= genre.name %></td>
               <td>
-                <% if genre.name %>
-                有効
-                <% else %>
-                無効
-                <% end %>
+                <%# if genre.name %>
+                <!--有効-->
+                <%# else %>
+                <!--無効-->
+                <%# end #%>
               </td>
               <td><%= link_to "編集する", edit_admin_genre_path(genre), class: "btn btn-primary" %></td>
             </tr>
