@@ -6,7 +6,7 @@
            <%= link_to item_path(item.id) ,style: "color: black;", data: {"turbolinks" => false} do %>
            <%= image_tag item.get_image(100,100) %><br>
            <%= item.name %><br>
-          ¥<%= item.price %>
+          ¥<%= ((item.price*1.1).floor).to_s(:delimited, delimiter: ',') %>
 			     <% end %>
 			   </div>
 		    <% end %>

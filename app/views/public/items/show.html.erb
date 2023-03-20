@@ -27,7 +27,7 @@
             </tr>
           </tbody>
         </table>
-       <p class="item-content2", style="font-family: arial black">¥ <%= ((@item.price_was*1.1).floor).to_s(:delimited, delimiter: ',') %> (税込)
+       <p class="item-content2", style="font-family: arial black">¥ <%= ((@item.price*1.1).floor).to_s(:delimited, delimiter: ',') %> (税込)
     　　　<%= form_with model: @cart_item, url:cart_items_path(item_id: @item), method: :post do |f| %>
 		　<h3><%= @item.name %></h3>
 		　　<%= f.hidden_field :item_id, value: @item.id %>

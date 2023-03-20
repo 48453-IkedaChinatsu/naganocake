@@ -14,7 +14,7 @@ class Public::CartItemsController < ApplicationController
         # byebug
 
         if @cart_item.save!
-           redirect_to  admin_order_path
+           redirect_to    cart_items_path
         else
             @item = Item.find(params[:cart_item][:item_id])
             @genres = Genre.all
