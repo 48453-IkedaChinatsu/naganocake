@@ -38,6 +38,7 @@ Rails.application.routes.draw do
    get '/customers/my_page' => 'customers#show'
    get '/customers/my_page/edit' => 'customers#edit'
    get '/customers/unsubscribe' => 'customers#unsubscribe'
+   patch '/customers/update' => 'customers#update'
    #get '/addresses' => 'addresses#index',as:'test'
    post '/orders/confirm' => 'orders#confirm'
    #get '/about' => 'items#about'
@@ -58,5 +59,6 @@ Rails.application.routes.draw do
    resources :genres, only: [:index, :create, :edit, :update]
    resources :customers, only: [:index, :show, :edit, :update]
    resources :orders, only: [:show, :update]
+   resources :order_details, only: [:update]
    end
 end

@@ -6,8 +6,8 @@
   	    <table class="table table-bordered table-condensed">
           <tbody>
               <tr>
-            　　<th class="info">購入者</th>
-            　　<td><%= link_to @customer.last_name + "　"  + @customer.first_name,admin_customer_path(@customer) %></td>
+               <th class="info">購入者</th>
+               <td><%= link_to @customer.last_name + " "  + @customer.first_name,admin_customer_path(@customer) %></td>
               </tr>
               
               <tr>
@@ -34,9 +34,10 @@
               <tr>
                 <th class="info">ステータス</th>
                 <td class="text-left">
-                  <%= @order.order_status_i18n %>
-                  <%= select :order_status, [['0', 入金待ち], ['1', 入金確認], ['2', 製作中], ['3', 発送準備中], ['4', 発送済み]] %>
+                  <%= form_with model: @order, url: admin_order_path do |f| %>
+                  <%= f.select :order_status, Order.order_statuses.keys.map{|k| [I18n.t("enums.order.order_status.#{k}"), k]} %>
                    <%= f.submit "更新", class: "btn btn-primary" %> </td>
+                   <% end %>
               </tr>
           </tbody>
         </table>
@@ -70,17 +71,18 @@
                   <!--個数-->
                 <td class="text-right">
                   <%= order_detail.quantity %>
-              　</td>
+              </td>
                   <!--小計-->
                 <td class="text-right">
                 ¥<%= ((order_detail.item.price * 1.1).floor * order_detail.quantity).to_s(:delimited, delimiter: ',') %>
                 <% @sum = @sum + (order_detail.item.price * 1.1).floor * order_detail.quantity %>
-              　</td>
+              </td>
                    <!--制作ステータス-->
-                <td class="text-right">
-                <%= order_detail.production_status_i18n %>
-                </td>   
-                
+              <td class="text-right">
+                 <%= form_with model: order_detail, url: admin_order_detail_path(order_detail) do |f| %>
+                 <%= f.select :production_status, OrderDetail.production_statuses.keys.map{|k| [I18n.t("enums.order_detail.production_status.#{k}"), k]} %>
+                 <%= f.submit "更新", class: "btn btn-primary" %> </td>
+                 <% end %>
             </tr>
           <% end %>
           </tbody>
