@@ -1,9 +1,13 @@
 class Public::OrdersController < ApplicationController
     
   def new
+      if current_customer.cart_items.any?
       @order = Order.new
       @addresses = current_customer.addresses
       # binding.pry
+      else
+        redirect_to cart_items_path
+      end  
   end
   
   
